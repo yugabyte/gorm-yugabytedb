@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/yugabyte/pgx/v5"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/migrator"
