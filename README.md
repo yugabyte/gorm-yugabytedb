@@ -4,28 +4,33 @@
 
 ```go
 import (
-  "gorm.io/driver/postgres"
+  "github.com/yugabyte/gorm-yugabytedb"
   "gorm.io/gorm"
 )
 
-// https://github.com/jackc/pgx
-dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
-db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+// https://github.com/yugabyte/pgx
+baseUrl := fmt.Sprintf("postgres://%s:%s@%s:%d/%s",
+		user, password, host, port, dbname)
+	url := fmt.Sprintf("%s?load_balance=true&yb_servers_refresh_interval=240", baseUrl)
+db, err := gorm.Open(postgres.Open(url), &gorm.Config{})
 ```
 
 ## Configuration
 
 ```go
 import (
-  "gorm.io/driver/postgres"
+  "github.com/yugabyte/gorm-yugabytedb"
   "gorm.io/gorm"
 )
 
-db, err := gorm.Open(postgres.New(postgres.Config{
-  DSN: "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai", // data source name, refer https://github.com/jackc/pgx
-  PreferSimpleProtocol: true, // disables implicit prepared statement usage. By default pgx automatically uses the extended protocol
-}), &gorm.Config{})
+	baseUrl := fmt.Sprintf("postgres://%s:%s@%s:%d/%s",
+		user, password, host, port, dbname)
+	url := fmt.Sprintf("%s?load_balance=true&yb_servers_refresh_interval=240", baseUrl)
+
+db, err := gorm.Open(postgres.Open(url), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
+	if err != nil {
+		panic(err)
+	}
 ```
-
-
-Checkout [https://gorm.io](https://gorm.io) for details.
