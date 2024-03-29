@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jackc/pgx/v5/pgconn"
+	"github.com/yugabyte/pgx/v5/pgconn"
 	"gorm.io/gorm"
 )
 
