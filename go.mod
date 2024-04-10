@@ -3,7 +3,7 @@ module github.com/yugabyte/gorm-yugabytedb
 go 1.18
 
 require (
-	github.com/yugabyte/pgx/v5 v5.5.3-yb-1
+	github.com/yugabyte/pgx/v5 v5.5.3-yb-2
 	gorm.io/gorm v1.25.8
 )
 
