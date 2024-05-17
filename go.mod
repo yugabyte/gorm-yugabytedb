@@ -1,6 +1,6 @@
 module github.com/yugabyte/gorm-yugabytedb
 
-go 1.18
+go 1.22.0
 
 require (
 	github.com/yugabyte/pgx/v5 v5.5.3-yb-2
